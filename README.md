@@ -75,7 +75,7 @@ The password generator builds a character pool by concatenating subsets of lower
 
 ## Contributing
 
-Contributions are welcome. Please open an issue or submit a pull request.
+This project is no longer actively maintained. You may submit small bug fixes or documentation improvements via Pull Request, but reviews may be infrequent and contributions are not guaranteed to be merged.
 
 ## License
 
