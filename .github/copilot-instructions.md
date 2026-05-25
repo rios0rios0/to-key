@@ -114,7 +114,7 @@ Since this project is discontinued and has no CI/CD pipeline:
 - **UI:** XIB files for view layout — do not introduce programmatic layout or Storyboards.
 - **Data source:** Add new menu entries to `OptionsList.plist` — do not hardcode entries in view controllers.
 - **Types:** Use `DWORD` (`unsigned long`) for keygen intermediate computations to match original 32-bit target semantics.
-- **Formatting:** Follow existing Objective-C code style in the project (2-space indentation, method names in camelCase).
+- **Formatting:** Follow existing Objective-C code style in the project (4-space indentation, method names in camelCase).
 
 ---
 

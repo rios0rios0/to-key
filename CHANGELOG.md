@@ -20,6 +20,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Changed
 
+- refreshed `.github/copilot-instructions.md` to fix incorrect indentation convention (2-space → 4-space)
+
 ### Removed
 
 
