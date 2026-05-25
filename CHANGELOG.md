@@ -16,14 +16,11 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
-### Added
+## [0.1.1] - 2026-05-25
 
 ### Changed
 
 - refreshed `.github/copilot-instructions.md` to fix incorrect indentation convention (2-space → 4-space)
-
-### Removed
-
 
 ## [0.1.0] - 2026-03-24
 
