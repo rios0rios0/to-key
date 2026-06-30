@@ -16,6 +16,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-30
+
 ### Added
 
 - created `CLAUDE.md` to provide Claude Code guidance covering build/run, MRR and `DWORD` conventions, and the title-string keygen dispatch coupling
