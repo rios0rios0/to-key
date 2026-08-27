@@ -97,7 +97,7 @@ All four algorithms iterate over ASCII character values of the input string, app
 
 ## Development Workflow
 
-Since this project is discontinued and has no CI/CD pipeline:
+Since this project is discontinued and has no build or deployment pipeline (only the Claude review and `@claude` mention workflows):
 
 1. Open `Project/To Key.xcodeproj` in Xcode.
 2. Make changes to source files in `Project/To Key/`.
