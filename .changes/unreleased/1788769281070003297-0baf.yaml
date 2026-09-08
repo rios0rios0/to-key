@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'refreshed `.github/skills/code-review/SKILL.md` to reword the secret-hygiene rule with inert vendor-named prefixes instead of credential-shaped literals'
-time: '2026-09-07T08:21:21.071199984Z'
