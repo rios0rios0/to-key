@@ -41,18 +41,18 @@
 | Component         | Technology                                          |
 |-------------------|-----------------------------------------------------|
 | Language          | Objective-C (manual retain/release — no ARC)        |
-| Framework         | UIKit (iOS SDK 3.0+)                                |
+| Framework         | UIKit (deployment target iOS 5.0)                   |
 | UI                | XIB/NIB files                                       |
 | Build system      | Xcode project (`project.pbxproj`)                   |
 | Target platform   | iOS (iPhone), ARMv7                                 |
 | Orientation       | Portrait only                                       |
-| IDE               | Xcode (older version targeting iOS SDK 3.0+)        |
+| IDE               | Xcode (older version supporting iOS 5.0, 32-bit)    |
 
 ---
 
 ## Build, Test, and Run Commands
 
-> **Note:** This project uses manual retain/release (MRR) memory management and targets iOS SDK 3.0+. It may require an older version of Xcode to compile without modifications. There is no automated test suite.
+> **Note:** This project uses manual retain/release (MRR) memory management with a deployment target of iOS 5.0. It may require an older version of Xcode to compile without modifications. There is no automated test suite.
 
 ### Open and Build (Historical)
 
@@ -64,7 +64,7 @@
 
 A pre-built `.app` bundle and `.ipa` file are available in the `Build/` directory and can be installed directly on a compatible device or simulator without rebuilding.
 
-There are **no lint, test, or CI/CD commands** — this project predates any automated tooling for this codebase.
+There are **no lint or test commands**. Pull requests to `main` run `.github/workflows/checks.yaml` (shared `rios0rios0/pipelines` checks) plus the Claude review and `@claude` mention workflows.
 
 ---
 
@@ -97,13 +97,13 @@ All four algorithms iterate over ASCII character values of the input string, app
 
 ## Development Workflow
 
-Since this project is discontinued and has no build or deployment pipeline (only the Claude review and `@claude` mention workflows):
+Since this project is discontinued and has no build or deployment pipeline (only the PR `checks`, Claude review, and `@claude` mention workflows):
 
 1. Open `Project/To Key.xcodeproj` in Xcode.
 2. Make changes to source files in `Project/To Key/`.
 3. Build with `Cmd+B` to check for compilation errors.
 4. Run with `Cmd+R` on a simulator or device.
-5. Commit changes with a descriptive message.
+5. Add a chlog fragment (see below) and commit it with the change, using `type(SCOPE): message` in simple past tense.
 
 ---
 
@@ -114,7 +114,7 @@ Since this project is discontinued and has no build or deployment pipeline (only
 - **UI:** XIB files for view layout — do not introduce programmatic layout or Storyboards.
 - **Data source:** Add new menu entries to `OptionsList.plist` — do not hardcode entries in view controllers.
 - **Types:** Use `DWORD` (`unsigned long`) for keygen intermediate computations to match original 32-bit target semantics.
-- **Formatting:** Follow existing Objective-C code style in the project (4-space indentation, method names in camelCase).
+- **Formatting:** Follow existing Objective-C code style in the project (4-space indentation). The app's own methods and outlets are capitalized (`EvilCode:`, `ChangeSlider:`, `UITextViewIn`) — keep them as they are.
 
 ---
 
@@ -123,7 +123,7 @@ Since this project is discontinued and has no build or deployment pipeline (only
 ### Adding a New Keygen Algorithm
 
 1. Add an entry to `OptionsList.plist` under the keygen section (name, description, icon).
-2. Implement the algorithm in `DetailViewController.m` by adding a new case in the keygen dispatch logic.
+2. Implement the algorithm in `DetailViewController.m` and add a branch in `textView:shouldChangeTextInRange:replacementText:` comparing `self.title` to the exact plist `name` string — the title is set from that field, and a mismatch silently skips the keygen.
 3. Build and run to verify.
 
 ### Modifying the Password Generator
