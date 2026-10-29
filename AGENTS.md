@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, GitHub Copilot) when working with code in this repository.
 
 ## What this is
 
@@ -11,15 +11,15 @@ See `.github/copilot-instructions.md` for the same guidance phrased for Copilot,
 ## Build / run
 
 - Open `Project/To Key.xcodeproj` in Xcode; build/run with `Cmd+R` on a simulator or device.
-- Targets iOS SDK 3.0+ and uses manual retain/release, so it likely needs an older Xcode to compile unmodified.
-- No tests, no lint, no CI. Manual verification in the simulator is the only validation path.
+- Deployment target iOS 5.0, 32-bit `ARCHS`, manual retain/release — it likely needs an older Xcode to compile unmodified.
+- No tests and no lint; manual verification in the simulator is the only functional check. PRs to `main` run `.github/workflows/checks.yaml` (shared `rios0rios0/pipelines` checks) plus the Claude review and `@claude` mention workflows.
 - Pre-built `Build/To Key.app` and `Build/To Key.ipa` exist — treat `Build/` as artifacts, not source.
 
 ## Conventions that bite
 
 - **Manual retain/release, no ARC.** Balance every `retain`/`alloc` with `release`; the existing `dealloc` methods are the pattern. (Note: the keygen methods have unreachable `[stringOut release]` after `return` — preserved as-is.)
-- **`DWORD` = `unsigned long`**, typedef'd per file, used for all keygen math to mimic the original 32-bit x86 register semantics. Keep it for any keygen arithmetic.
-- **4-space indentation, camelCase methods.** Match surrounding style.
+- **`DWORD` = `unsigned long`**, typedef'd in `DetailViewController.m`, used for all keygen math to mimic the original 32-bit x86 register semantics. Keep it for any keygen arithmetic.
+- **4-space indentation; match surrounding style.** The app's own methods and outlets are capitalized (`EvilCode:`, `ChangeSlider:`, `UITextViewIn`) — keep them as they are.
 - **XIB-only UI.** Each view controller has a paired `.xib`; do not introduce programmatic layout or Storyboards.
 
 ## Architecture

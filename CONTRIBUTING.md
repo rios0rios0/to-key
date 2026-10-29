@@ -8,9 +8,9 @@
 This project was built using the following tools and technologies:
 
 - **Language:** Objective-C (manual retain/release, no ARC)
-- **Platform:** iOS (iPhone), iOS SDK 3.0+
+- **Platform:** iOS (iPhone), deployment target iOS 5.0
 - **UI:** XIB/NIB files (MainWindow, MasterViewController, DetailViewController, PasswordViewController)
-- **IDE:** Xcode (older version targeting iOS SDK 3.0+)
+- **IDE:** Xcode (older version supporting iOS 5.0)
 
 ### Build Steps (Historical)
 

@@ -29,7 +29,7 @@ An iOS application that bundles keygen solvers for classic reverse-engineering c
 | Component | Technology |
 |-----------|------------|
 | Language | Objective-C (manual retain/release, no ARC) |
-| Framework | UIKit (iOS SDK 3.0+) |
+| Framework | UIKit (deployment target iOS 5.0) |
 | UI | XIB/NIB files (MainWindow, MasterViewController, DetailViewController, PasswordViewController) |
 | Build system | Xcode project (`project.pbxproj`) |
 | Target architecture | ARMv7 |
@@ -71,7 +71,7 @@ The password generator builds a character pool by concatenating subsets of lower
 2. Select an iOS Simulator or connected device as the build target
 3. Build and run (Cmd+R)
 
-**Note:** This project uses manual retain/release (MRR) memory management and targets iOS SDK 3.0+. It may require an older version of Xcode to compile without modifications.
+**Note:** This project uses manual retain/release (MRR) memory management with a deployment target of iOS 5.0. It may require an older version of Xcode to compile without modifications.
 
 ## Contributing
 

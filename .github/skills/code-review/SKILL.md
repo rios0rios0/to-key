@@ -5,7 +5,7 @@ description: "Review pull requests and diffs in to-key — the preserved 2012 iO
 
 # Code review — `to-key`
 
-`to-key` is an educational reverse-engineering exercise: a small iOS app that reproduces key-generation algorithms for crack-me software, driven by a plist list of options. It is a **preserved historical archive**, discontinued in 2012, targeting iOS SDK 3 with manual retain/release.
+`to-key` is an educational reverse-engineering exercise: a small iOS app that reproduces key-generation algorithms for crack-me software, driven by a plist list of options. It is a **preserved historical archive**, discontinued in 2012, with a deployment target of iOS 5.0 and manual retain/release.
 
 ## When to use this skill
 
@@ -20,7 +20,7 @@ The canonical engineering standards live in the
 repo-tailored index into that guide plus the rules that only apply here. Precedence, highest
 first:
 
-1. This repository's `.github/copilot-instructions.md`, `CLAUDE.md`, and `CONTRIBUTING.md` —
+1. This repository's `.github/copilot-instructions.md`, `AGENTS.md`, and `CONTRIBUTING.md` —
    they describe *this* codebase and its load-bearing invariants.
 2. The **rios0rios0/guide** wiki — the shared standard.
 3. General language idiom.
@@ -67,8 +67,8 @@ them before the generic ones.
 - **Keygen intermediates use `DWORD` (`unsigned long`)** to match the original 32-bit target semantics. Switching to a native 64-bit type changes the wrap-around and silently produces different keys — **Critical**, because the output still looks plausible.
 - **Manual retain/release, everywhere.** Balance every `retain`, use `autorelease` pools where the original does; no ARC and no Swift.
 - **UI layout is XIB-based.** Do not introduce programmatic layout or Storyboards, and check that an outlet renamed in a header is renamed in the XIB too.
-- **4-space indentation and camelCase method names** — follow the existing style rather than reformatting.
-- **Treat this as an archive** — no modernisation, no new dependencies, and there is no lint, test, or CI tooling by design.
+- **4-space indentation; the existing capitalized method and outlet names (`EvilCode:`, `UITextViewIn`) stay as they are** — follow the existing style rather than reformatting.
+- **Treat this as an archive** — no modernisation, no new dependencies, and no lint or test tooling by design. Pull requests still run the shared `checks` workflow.
 
 ### Commands a reviewer should be able to quote
 
@@ -99,8 +99,9 @@ hand.
 - Fragment bodies start with a lowercase verb in simple past tense, capitalise proper nouns
   (GitHub, Go, Docker), and wrap code identifiers and versions in backticks.
 - `README.md` is updated whenever usage, setup, configuration, or architecture changes;
-  `.github/copilot-instructions.md` and `CLAUDE.md` whenever the workflow, commands, or
-  structure changes. Documentation and code ship in one commit.
+  `.github/copilot-instructions.md` and `AGENTS.md` whenever the workflow, commands, or
+  structure changes; `CLAUDE.md` stays the single line `@AGENTS.md`. Documentation and code
+  ship in one commit.
 
 ## Git Flow and pull-request hygiene
 
@@ -145,7 +146,7 @@ A review that raises noise gets ignored. Do not report these:
 - Anything that amounts to "this is old code". Modernising idiom, renaming identifiers, reformatting, or introducing a framework into a preserved archive is out of scope and destroys the historical record.
 - Mixed Portuguese and English identifiers and UI strings — that is the original code.
 - The pre-built `.app` and `.ipa` under `Build/`.
-- The absence of tests, linting, or CI.
+- The absence of tests or linting.
 - Anything the guide does not require and this file does not list, unless it is a genuine correctness or security defect — say so plainly and label it a Suggestion.
 
 ## Review output format
@@ -165,7 +166,7 @@ A review that raises noise gets ignored. Do not report these:
 ### Change-control checklist
 - [ ] Changelog entry present for every behavioural change
 - [ ] `README.md` updated if usage, setup, or architecture changed
-- [ ] `.github/copilot-instructions.md` and `CLAUDE.md` updated if the workflow, commands, or structure changed
+- [ ] `.github/copilot-instructions.md` and `AGENTS.md` updated if the workflow, commands, or structure changed
 - [ ] Commit messages follow `type(SCOPE): message` in simple past tense
 - [ ] Breaking changes flagged in the commit footer, the changelog, and the PR description
 
@@ -178,7 +179,7 @@ A review that raises noise gets ignored. Do not report these:
 | Severity       | Use for                                                                                                                            |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------|
 | **Critical**   | Broken dependency direction, a leaked secret, an injection or authentication flaw, a missing changelog entry, a banned mock library, a load-bearing invariant broken, a test deleted rather than fixed. |
-| **Warning**    | Naming that departs from the guide, a missing test for a new branch of logic, an unexplained magic value, a stale README or instructions file, a `switch` that should be a map. |
+| **Warning**    | Naming that departs from the guide, an unexplained magic value, a stale README or instructions file, a `switch` that should be a map. |
 | **Suggestion** | Readability, consistency with neighbouring modules, and performance ideas that no rule mandates.                                     |
 
 Rank findings most severe first, and state plainly when nothing blocks the merge — an empty
