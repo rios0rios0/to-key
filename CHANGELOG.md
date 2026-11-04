@@ -22,6 +22,13 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-11-04
+
+### Changed
+
+- corrected the iOS 5.0 deployment target, the PR `checks` workflow, the capitalized method naming, and the `AGENTS.md` references in `AGENTS.md`, `.github/copilot-instructions.md`, the code-review skill, `README.md`, and `CONTRIBUTING.md`
+- moved the agent instructions from `CLAUDE.md` to `AGENTS.md`, keeping a `CLAUDE.md` that imports it
+
 ## [0.5.1] - 2026-09-08
 
 ### Changed
